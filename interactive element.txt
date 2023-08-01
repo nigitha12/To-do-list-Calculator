@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Elements</title>
+</head>
+<body>
+    <h1 id="text">Hello, World!</h1>
+    <button id="changeColorButton">Change Text Color</button>
+
+    <form>
+        <label for="textInput">Enter Text:</label>
+        <input type="text" id="textInput" />
+        <button type="button" id="displayButton">Display Text</button>
+    </form>
+
+    <div id="displayArea"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+// Button that changes the color of the text when clicked
+const changeColorButton = document.getElementById('changeColorButton');
+const text = document.getElementById('text');
+
+changeColorButton.addEventListener('click', () => {
+    const randomColor = getRandomColor();
+    text.style.color = randomColor;
+});
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+// Form that displays inputted text somewhere else on the page
+const displayButton = document.getElementById('displayButton');
+const textInput = document.getElementById('textInput');
+const displayArea = document.getElementById('displayArea');
+
+displayButton.addEventListener('click', () => {
+    const inputText = textInput.value;
+    displayArea.textContent = `You entered: ${inputText}`;
+})

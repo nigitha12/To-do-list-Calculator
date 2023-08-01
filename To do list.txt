@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #todo-list {
+      width: 300px;
+      margin: 20px auto;
+    }
+    li {
+      list-style-type: none;
+      margin-bottom: 5px;
+    }
+    .done {
+      text-decoration: line-through;}
+  </style>
+</head>
+<body>
+  <div id="todo-list">
+    <h1>To Do List</h1>
+    <input type="text" id="new-item" placeholder="Enter ...">
+    <button onclick="addItem()">Add Items</button>
+    <ul id="items">
+      
+    </ul>
+  </div>
+  <script>
+
+    const itemsList = document.getElementById("items");
+    function addItem() {
+      const newItemText = document.getElementById("new-item").value;
+      if (newItemText.trim() !== "") {
+        const newItem = document.createElement("li");
+        newItem.textContent = newItemText;
+        itemsList.appendChild(newItem);
+        document.getElementById("new-item").value = "";
+        newItem.addEventListener("click", toggleDone);
+        newItem.addEventListener("contextmenu", removeItem);
+      }}
+    function toggleDone(event) {
+      event.target.classList.toggle("done");
+    }
+    function removeItem(event) {
+      event.preventDefault(); 
+      const itemToRemove = event.target;
+      itemsList.removeChild(itemToRemove);
+    }
+  </script></body></html>
